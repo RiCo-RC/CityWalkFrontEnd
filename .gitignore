@@ -1,0 +1,59 @@
+### Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### Expo
+.expo/
+.expo-shared/
+
+### macOS
+.DS_Store
+
+### Logs
+logs/
+*.log
+
+### Editor
+.vscode/
+.idea/
+*.sublime-workspace
+
+### Build artifacts
+build/
+*.xcworkspace/
+*.xcuserdatad/
+*.xcodeproj/
+
+### Android
+android/app/build/
+android/build/
+android/.gradle/
+android/.idea/
+android/app/src/main/assets/index.android.bundle
+android/app/src/main/res/drawable-mdpi/shell_launch_background.png
+android/app/src/main/res/drawable-hdpi/shell_launch_background.png
+android/app/src/main/res/drawable-xhdpi/shell_launch_background.png
+android/app/src/main/res/drawable-xxhdpi/shell_launch_background.png
+android/app/src/main/res/drawable-xxxhdpi/shell_launch_background.png
+android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
+### iOS
+ios/Pods/
+ios/build/
+ios/DerivedData/
+ios/*.xcworkspace/
+ios/*.xcuserdatad/
+ios/*.xcodeproj/
+
+### Misc
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
