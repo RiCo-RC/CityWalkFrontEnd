@@ -11,7 +11,7 @@ export const LanguageSelectionScreen = ({ navigation }) => {
       <Button
         title="Choisir la langue"
         onPress={() => {
-          navigation.replace('Home');
+          navigation.replace('HomeScreen');
         }}
       />
     </View>

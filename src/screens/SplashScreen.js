@@ -8,6 +8,7 @@ import { stylesSplashscreen } from '../styles/splashscreen';
 export const SplashScreen = () => {
   const navigation = useNavigation();
   const [progress, setProgress] = useState(new Animated.Value(0));
+  const [percentage, setPercentage] = useState(0);
   const [isFirstAppLauch, setIsFirstAppLauch] = useState(null);
 
   // Fonction pour récupérer l'authentification
@@ -15,8 +16,9 @@ export const SplashScreen = () => {
     try {
       const userToken = await AsyncStorage.getItem('userToken');
       setIsFirstAppLauch(userToken ? true : false);
+      console.log("userToken is", userToken);
     } catch (error) {
-      console.error("Erreur lors de la récupération des données de l'utilisateur", error);
+      console.error("Error recovering user data", error);
       setIsFirstAppLauch(false);
     }
   };
@@ -31,24 +33,32 @@ export const SplashScreen = () => {
       useNativeDriver: false,
     }).start();
 
+    // Barre de progression
+    const progressListener = progress.addListener(({value}) => {
+      setPercentage(Math.round(value * 100));
+    });
+
+    // Renvoie vers une page selon si c'est le premier lancement ou non
     setTimeout(() => {
-      // Si l'utilisateur n'a pas lanncé l'app pour le première fois, rediriger vers la page d'accueil
       if (isFirstAppLauch) {
         navigation.replace('HomeScreen');
       } else {
-        navigation.replace('LanguageSelection');
+        navigation.replace('LanguageSelectionScreen');
       }
     }, 3500); 
+
+    return () => {
+      progress.removeListener(progressListener);
+    };
   }, [isFirstAppLauch]);
 
-  // Image de fond ou animation Lottie
-  // const loadingImage = require('../../assets/loading_image.png'); 
-  const loadingImage = require('../../assets/loading_image.png'); 
+  // Image de fond (ou animation Lottie)
+  const loadingImage = require('../../assets/images/loading_image.png'); 
 
   return (
     <View style={stylesSplashscreen.container}>
       <Image source={loadingImage} style={stylesSplashscreen.image} />
-      <Text style={stylesSplashscreen.text}>Chargement...</Text>
+      <Text style={stylesSplashscreen.text}>Loading...</Text>
 
       {/* Affichage de la barre de progression */}
       <Animated.View
@@ -57,7 +67,7 @@ export const SplashScreen = () => {
 
       {/* Affichage du pourcentage de progression */}
       <Text style={stylesSplashscreen.percentageText}>
-        {Math.round(progress._value * 100)}%
+        {percentage}%
       </Text>
     </View>
   );
